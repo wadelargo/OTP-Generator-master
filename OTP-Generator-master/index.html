@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>OTP Verification</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <h1>Phone Number Verification</h1>
+
+  <div>
+    <label for="phoneNumber">Phone Number:</label>
+    <input type="tel" id="phoneNumber" placeholder="Enter your phone number">
+    <button onclick="sendOTP()">Send OTP</button>
+  </div>
+
+  <div id="otpContainer" style="display: none;">
+    <label for="otp">Enter OTP:</label>
+    <input type="text" id="otp" placeholder="Enter OTP">
+    <button onclick="verifyOTP()">Verify OTP</button>
+  </div>
+
+  <script>
+    let generatedOTP;
+
+function sendOTP() {
+  const phoneNumber = document.getElementById('phoneNumber').value;
+
+  // Check if the phone number is exactly 10 digits
+  if (phoneNumber.length === 10 && /^\d+$/.test(phoneNumber)) {
+    // Simulate server-side OTP generation and SMS sending
+    generatedOTP = Math.floor(1000 + Math.random() * 9000);
+
+    // Display the OTP input field
+    document.getElementById('otpContainer').style.display = 'block';
+
+    // You would typically send the OTP to the user's phone via SMS here
+    console.log(`OTP sent to ${phoneNumber}: ${generatedOTP}`);
+    alert('Otp sent');
+    alert('Open the console.log');
+  } else {
+    // Display an alert for invalid phone number
+    alert('Invalid phone number. Please enter a 10-digit numeric phone number.');
+  }
+}
+
+function verifyOTP() {
+  const enteredOTP = document.getElementById('otp').value;
+
+  if (enteredOTP === generatedOTP.toString()) {
+    // OTP is valid, redirect to another page or show an alert
+    alert('OTP is valid!');
+    // Uncomment the following line to redirect to another page
+    // window.location.href = 'www.google.com';
+  } else {
+    alert('Invalid OTP. Please try again.');
+  }
+}
+
+  </script>
+
+</body>
+</html>
